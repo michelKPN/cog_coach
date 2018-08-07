@@ -6,7 +6,7 @@ import pandas as pd
 
 DATAFOLDER = "C:/Users/kleis500/Eclipse workspace/RecSys/data/cog_coach/"
 
-#read data
+#read in data
 df = pd.read_excel(DATAFOLDER + "acties_features_rated.xlsx")
 
 X = []
