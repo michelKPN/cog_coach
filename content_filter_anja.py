@@ -4,8 +4,7 @@ import itertools
 import numpy as np
 import pandas as pd
 ## dit is een check
-# en nu nog verder
-# maar nu via pycharm
+
 DATAFOLDER = "C:/Users/kleis500/Eclipse workspace/RecSys/data/cog_coach/"
 
 #read in data
