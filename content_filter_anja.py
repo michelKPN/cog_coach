@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 ## dit is een check
 
-DATAFOLDER = "C:/Users/kleis500/Eclipse workspace/RecSys/data/cog_coach/"
-#DATAFOLDER = "C:\\Users\\hoef503\\Desktop\\DataLab\\Behaviour & Cognition\\data\\"
+#DATAFOLDER = "C:/Users/kleis500/Eclipse workspace/RecSys/data/cog_coach/"
+DATAFOLDER = "C:\\Users\\hoef503\\Desktop\\DataLab\\Behaviour & Cognition\\data\\"
 
 #read in data
 df = pd.read_excel(DATAFOLDER + "acties_features_rated.xlsx")
