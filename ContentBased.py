@@ -1,11 +1,13 @@
 import numpy as np
 import pandas as pd
 import random
+import itertools
+from UserDictionary import make_dict
 
 
 class CB:
 
-    def __init__(self, items, ratings, features):
+    def __init__(self, items, ratings, features, K):
         """
                 Perform content-based filtering to predict empty
                 entries in a matrix and make a top 10.
@@ -14,11 +16,13 @@ class CB:
                 - items         : content of items
                 - ratings       : ratings of one user
                 - features      : feature influences
+                - K             : number of features
                 """
 
         self.items = items
         self.ratings = ratings
         self.features = features
+        self.K = K
 
     def make_profiles(self, person, name):
         # Get the ratings of the indicated person
@@ -47,7 +51,7 @@ class CB:
         # Make vector of the features per action
         item_profiles = []
         for index, row in self.features.iterrows():
-            item_profiles.append([row[0], row[1], row[2], row[3], row[4], row[5]])
+            item_profiles.append([row[x] for x in range(self.K)])
 
         return item_profiles
 
@@ -62,8 +66,12 @@ class CB:
         for f in self.features.columns.values.tolist():
             feature_raw.append(list(user_matrix[name].loc[user_matrix[f] > 0]))
 
+        # Compute the mean rating
+        flat_ratings = list(itertools.chain.from_iterable(feature_raw))
+        mean_ratings = sum(flat_ratings) / len(flat_ratings)
+
         # Normalize all raw ratings
-        normalized_ratings = [[j-3 for j in i] for i in feature_raw]
+        normalized_ratings = [[j-mean_ratings for j in i] for i in feature_raw]
 
         # Sum normalized ratings per feature
         sum_norm_ratings = [sum(k) for k in normalized_ratings]
@@ -71,11 +79,11 @@ class CB:
         # Compute profile weights
         profile_weights = np.array(sum_norm_ratings) / np.array(feature_occ)
 
-        # Multiply weights with feature occurrences ??? or summed feature inputs ???
+        # Multiply weights with summed feature inputs !!!??? # v TODO feature inputs = 1, 1,5 etc
         summed_weighted_profiles = profile_weights * feature_occ
 
         # Create personalized user profile
-        weighted_user_profile = summed_weighted_profiles / np.array([len(self.items)] * 6)
+        weighted_user_profile = summed_weighted_profiles / np.array([len(self.items)] * self.K)
 
         return weighted_user_profile
 
@@ -93,7 +101,7 @@ class CB:
         # Select a person and copy the ratings
         person = input("Choose a person: Anja=0, Bert=1, Carlos=2 or Dave=3")
         print("Person number is: " + person)
-        # Save person's name
+        # Save person's name # TODO dictionary namen plus getal voor veel gebruikers (zie code katharina)
         if int(person) == 0:
             name = "Anja"
         elif int(person) == 1:
@@ -104,6 +112,10 @@ class CB:
             name = "Dave"
         else:
             name = "user"
+
+        # TODO keuze maken: wil je de mensen de naam van een persoon laten invullen of de userID (getal)? Denk aan
+        # TODO keys en values.
+        # user_dict = make_dict()
 
         # Get the item- and user profiles
         profiles = self.make_profiles(person, name)

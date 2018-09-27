@@ -4,7 +4,7 @@ import random
 
 class MF:
 
-    def __init__(self, R, K, alpha, beta, iterations):
+    def __init__(self, R, K, alpha, beta, iterations, amount_features):
         """
         Perform matrix factorization to predict empty
         entries in a matrix.
@@ -22,6 +22,7 @@ class MF:
         self.alpha = alpha
         self.beta = beta
         self.iterations = iterations
+        self.amount_features = amount_features
 
     def train(self):
         # Initialize user and item latent feature matrice
@@ -94,7 +95,7 @@ class MF:
         """
         return self.b + self.b_u[:, np.newaxis] + self.b_i[np.newaxis:, ] + self.P.dot(self.Q.T)
 
-    def get_advice(self, items):
+    def get_advice(self, items, amount_features):
         # Select a person and copy the ratings
         person = input("Choose a person: Anja=0, Bert=1, Carlos=2 or Dave=3")
 
@@ -114,6 +115,7 @@ class MF:
         # Train the model
         self.train()
 
+        # TODO generaliseren naar anonieme users
         df_p = pd.DataFrame(self.full_matrix(), columns=['pred_Anja', 'pred_Bert', 'pred_Carlos', "pred_Dave"])
         df = pd.DataFrame()
         df["Item"] = items
