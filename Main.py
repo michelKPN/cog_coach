@@ -21,8 +21,9 @@ def run_mf(ratings, items):
 
 def main():
     print("----- Running the Cognitive Coach -----")
-    data_folder = "C://Users/galet500//Documents//Data & Analytics//Data Innovation Lab//Behaviour and Cognition//" \
-                  "Recommendation System//data//"
+    data_folder = "C:\\Users\\hoef503\\Desktop\\DataLab\\Behaviour & Cognition\\data\\"0
+ #   data_folder = "C://Users/galet500//Documents//Data & Analytics//Data Innovation Lab//Behaviour and Cognition//" \
+ #                 "Recommendation System//data//"
     df = pd.read_excel(data_folder + "acties_features_rated.xlsx")
     # Split DataFrame into items, ratings and features
     items = df.iloc[:, 0].copy()
