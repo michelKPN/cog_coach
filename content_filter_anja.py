@@ -3,7 +3,6 @@ import tkinter as tk
 import itertools
 import numpy as np
 import pandas as pd
-## dit is een check
 
 DATAFOLDER = "C:/Users/kleis500/Eclipse workspace/RecSys/data/cog_coach/"
 #DATAFOLDER = "C:\\Users\\hoef503\\Desktop\\DataLab\\Behaviour & Cognition\\data\\"
