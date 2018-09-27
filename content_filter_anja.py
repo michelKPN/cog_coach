@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 ## dit is een check
 # 27 september
+# hij doet het niet
 
 #DATAFOLDER = "C:/Users/kleis500/Eclipse workspace/RecSys/data/cog_coach/"
 DATAFOLDER = "C:\\Users\\hoef503\\Desktop\\DataLab\\Behaviour & Cognition\\data\\"
