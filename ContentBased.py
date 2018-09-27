@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import random
 import itertools
-from UserDictionary import make_dict
+# from UserDictionary import make_dict
 
 
 class CB:

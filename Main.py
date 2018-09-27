@@ -23,6 +23,8 @@ def main():
     print("----- Running the Cognitive Coach -----")
     data_folder = "C://Users/galet500//Documents//Data & Analytics//Data Innovation Lab//Behaviour and Cognition//" \
                   "Recommendation System//data//"
+    # data_folder = "C:/Users/kleis500/Eclipse workspace/RecSys/data/cog_coach/"
+    # data_folder = " "
     df = pd.read_excel(data_folder + "acties_features_rated.xlsx")
     # Split DataFrame into items, ratings and features
     items = df.iloc[:, 0].copy()
