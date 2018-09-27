@@ -24,7 +24,7 @@ def main():
     data_folder = "C://Users/galet500//Documents//Data & Analytics//Data Innovation Lab//Behaviour and Cognition//" \
                   "Recommendation System//data//"
     # data_folder = "C:/Users/kleis500/Eclipse workspace/RecSys/data/cog_coach/"
-    # data_folder = " "
+    # data_folder = "C:/Usershoef503/Desktop/DataLab/Behaviour & Cognition/20-8/data"
     df = pd.read_excel(data_folder + "acties_features_rated.xlsx")
     # Split DataFrame into items, ratings and features
     items = df.iloc[:, 0].copy()
