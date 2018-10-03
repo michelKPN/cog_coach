@@ -61,6 +61,13 @@ class CB:
         for f in self.features.columns.values.tolist():
             feature_occ.append(user_matrix[f].loc[user_matrix[f] > 0].count())
 
+        # Sum the features for (rated) item profiles
+        index_list = []
+        for x in self.features.index:
+            if x in user_matrix.index:
+                index_list.append(x)
+        summed_item_profile = self.features.ix[index_list].sum()
+
         # Extract raw ratings for user per feature
         feature_raw = []
         for f in self.features.columns.values.tolist():
@@ -79,8 +86,8 @@ class CB:
         # Compute profile weights
         profile_weights = np.array(sum_norm_ratings) / np.array(feature_occ)
 
-        # Multiply weights with summed feature inputs !!!??? # v TODO feature inputs = 1, 1,5 etc
-        summed_weighted_profiles = profile_weights * feature_occ
+        # Multiply weights with summed feature inputs
+        summed_weighted_profiles = profile_weights * summed_item_profile
 
         # Create personalized user profile
         weighted_user_profile = summed_weighted_profiles / np.array([len(self.items)] * self.K)

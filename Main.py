@@ -19,6 +19,13 @@ def run_mf(ratings, items, amount_features):
     return advice
 
 
+def run_hybrid(ratings, items, features, amount_features):
+    print("Running hybrid")
+    hb = Hybric(items, ratings, features, K=amount_features)
+    advice = hb.get_advice()
+    return advice
+
+
 def main():
     print("----- Running the Cognitive Coach -----")
     data_folder = "C://Users/galet500//Documents//Data & Analytics//Data Innovation Lab//Behaviour and Cognition//" \
@@ -29,8 +36,7 @@ def main():
     # Split DataFrame into items, ratings and features
     items = df.iloc[:, 0].copy()
     ratings = df.iloc[:, [1, 2, 3, 4]].copy()
-    # TODO fill with mean instead of 0!
-    ratings.fillna(0, inplace=True)
+    ratings.fillna(ratings.mean(), inplace=True)
     features = df.iloc[:, [5, 6, 7, 8, 9, 10]].copy()
 
     # Choose recommender type and run
@@ -43,6 +49,9 @@ def main():
     elif int(recommender_type) == 1:
         print("type = 1")
         final_advice = run_mf(ratings, items, int(amount_features))
+    elif int(recommender_type) == 2:
+        print("type = 2")
+        final_advice = run_hybrid(ratings, items, features, int(amount_features))
     else:
         return
 
