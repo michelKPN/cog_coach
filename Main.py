@@ -18,7 +18,6 @@ def run_mf(ratings, items, amount_features):
     advice = mf.get_advice(items)
     return advice
 
-
 def run_hybrid(ratings, items, features, amount_features):
     print("Running hybrid")
     hb = Hybric(items, ratings, features, K=amount_features)
@@ -28,10 +27,10 @@ def run_hybrid(ratings, items, features, amount_features):
 
 def main():
     print("----- Running the Cognitive Coach -----")
-    data_folder = "C://Users/galet500//Documents//Data & Analytics//Data Innovation Lab//Behaviour and Cognition//" \
-                  "Recommendation System//data//"
+    #data_folder = "C://Users/galet500//Documents//Data & Analytics//Data Innovation Lab//Behaviour and Cognition//" \
+    #              "Recommendation System//data//"
     #data_folder = "C:/Users/kleis500/Eclipse workspace/RecSys/data/cog_coach/"
-    #data_folder = "C:/Users/hoef503/Desktop/DataLab/Behaviour & Cognition/20-8/data/"
+    data_folder = "C:/Users/hoef503/Desktop/DataLab/Behaviour & Cognition/20-8/data/"
     df = pd.read_excel(data_folder + "acties_features_rated.xlsx")
     # Split DataFrame into items, ratings and features
     items = df.iloc[:, 0].copy()
